@@ -21,9 +21,19 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/freelancer', {
         redirectTo: '/freelancer/disponivel'
     }).when('/cliente', {
-        redirectTo: '/cliente/andamento'
-    }).when('/cliente/andamento', {
-        templateUrl: 'views/cliente/trabalho-andamento.html'
+        redirectTo: '/cliente/aberto'
+    }).when('/cliente/criar-trabalho', {
+        templateUrl: 'views/cliente/criar-trabalho.html',
+        controller: 'ClienteCriarTrabalhoController'
+    }).when('/cliente/aberto', {
+        templateUrl: 'views/cliente/trabalho-aberto.html',
+        controller: 'ClienteTrabalhoAbertoController'
+    }).when('/cliente/assinado', {
+        templateUrl: 'views/cliente/trabalho-assinado.html',
+        controller: 'ClienteTrabalhoAssinadoController'
+    }).when('/cliente/concluido', {
+        templateUrl: 'views/cliente/trabalho-concluido.html',
+        controller: 'ClienteTrabalhoConcluidoController'
     }).when('/freelancer/disponivel', {
         templateUrl: 'views/freelancer/trabalho-disponivel.html',
         controller: 'FreelancerTrabalhoDisponivelController'

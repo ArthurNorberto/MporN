@@ -1,0 +1,18 @@
+<div ng-show="dataClienteTrabalhoAssinado.loading != 0">loading</div>
+<div ng-hide="dataClienteTrabalhoAssinado.loading != 0">
+    <div class="alert alert-danger" ng-show="dataClienteTrabalhoAssinado.erro.mensagem">
+        <span>{{dataClienteTrabalhoAssinado.erro.mensagem}}</span>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+            </tr>
+            <tr ng-repeat="trabalho in dataClienteTrabalhoAssinado.dados">
+                <td>{{trabalho.nome}}</td>
+                <td>{{trabalho.descricao}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

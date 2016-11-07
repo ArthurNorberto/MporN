@@ -1,0 +1,71 @@
+<!-- TODO: Tela de loading -->
+<div ng-show="dataCliente.loading != 0">loading</div>
+<div ng-hide="dataCliente.loading != 0">
+
+    <form name="cadastroForm" novalidate class="simple-form">
+
+        <div class="alert alert-danger" ng-show="dataCliente.erro.mensagem">
+            <span>{{dataCliente.erro.mensagem}}</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': dataCliente.erro.nome.requerido || dataCliente.erro.nome.tamanho}">
+            <label for="nomeInput" class="control-label col-md-3">Nome:</label>
+            <div class="col-md-9">
+                <input type="text" id="nomeInput" name="nomeInput" class="form-control" placeholder="Nome" required autofocus minlength="2" ng-model="dataCliente.dados.nome">
+                <span class="help-block" ng-show="dataCliente.erro.nome.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataCliente.erro.nome.tamanho">Nome Precisa ter no minimo 2 Caracteres</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" ng-class="{'has-error': dataCliente.erro.email.requerido || dataCliente.erro.email.invalido}">
+            <label for="emailInput" class="control-label col-md-3">Email:</label>
+            <div class="col-md-9">
+                <input type="email" id="emailInput" name="emailInput" class="form-control" placeholder="Email" required ng-model="dataCliente.dados.email">
+                <span class="help-block" ng-show="dataCliente.erro.email.requerido">Campo Requerido</span>
+                <span class="help-block" ng-show="dataCliente.erro.email.invalido">Email Invalido</span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': dataCliente.erro.cpfcnpj.requerido || dataCliente.erro.cpfcnpj.invalido}">
+            <label for="cpfcnpjInput" class="control-label col-md-3">CPF:</label>
+            <!-- TODO: CPF/CNPJ -->
+            <div class="col-md-9">
+                <input id="cpfcnpjInput" name="cpfcnpjInput" class="form-control" required ng-cpf ui-mask="999.999.999-99" ng-model="dataCliente.dados.cpfcnpj">
+                <span class="help-block" ng-show="dataCliente.erro.cpfcnpj.requerido">CPF Requerido</span>
+                <span class="help-block" ng-show="dataCliente.erro.cpfcnpj.invalido">CPF Invalido</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" ng-class="{'has-error': dataCliente.erro.senha.requerido || dataCliente.erro.senha.tamanho || dataCliente.erro.senha.difere}">
+            <label for="senhaInput" class="col-md-3 control-label">Senha:</label>
+            <div class="col-md-9">
+                <input type="password" id="senhaInput" name="senhaInput" class="form-control" placeholder="Senha" ng-model="dataCliente.dados.senha">
+            </div>
+
+            <label for="senhaInput2" class="col-md-3 control-label">Confirmar Senha:</label>
+            <div class="col-md-9">
+                <input type="password" id="senhaInput2" class="form-control" placeholder="Confirmar Senha" ng-model="dataCliente.senha2">
+                <span class="help-block" ng-show="dataCliente.erro.senha.requerido">Senhas Requeridas</span>
+                <span class="help-block" ng-show="dataCliente.erro.senha.tamanho">Senha tem tamanho minimo de 5 caracteres</span>
+                <span class="help-block" ng-show="dataCliente.erro.senha.difere">Senhas Diferentes</span>
+            </div>
+        </div>
+        
+        <div class="form-group" ng-class="{'has-error': dataCliente.erro.especialidade.requerido}">
+            <label for="especialidadeInput" class="col-md-3 control-label">Especialidades:</label>
+            <div class="col-md-9">
+                <select id="especialidadeInput" name="especialidadeInput" class="selectpicker form-control" required multiple ng-model="dataCliente.dados.especialidade">
+                    <option ng-repeat="especialidade in dataCliente.todasEspecialidades" value="{{especialidade.id}}">{{especialidade.nome}}</option>
+                </select>
+                <span class="help-block" ng-show="dataCliente.erro.especialidade.requerido">Especialidade Requerido</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button id="btn-signup" type="button" class="btn btn-info" ng-click="atualizaClienteDados()">Atualizar</button>
+            </div>
+        </div>
+    </form>
+</div>

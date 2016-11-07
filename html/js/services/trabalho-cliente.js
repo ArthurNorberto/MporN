@@ -1,13 +1,13 @@
-app.factory('TrabalhoService', function($http) {
-    var urlDisponiveis = "/php/freelancer/trabalho-disponivel.php";
-    var urlAndamento = "/php/freelancer/trabalho-andamento.php";
-    var urlConcluido = "/php/freelancer/trabalho-concluido.php";
-    var urlAltera = "/php/freelancer/altera-trabalho.php";
+app.factory('TrabalhoClienteService', function($http) {
+    var urAbertos = "/php/cliente/trabalho-aberto.php";
+    var urlAssinados = "/php/cliente/trabalho-assinado.php";
+    var urlConcluidos = "/php/cliente/trabalho-concluido.php";
+    var urlCadastraTrabalho = "/php/cliente/criar-trabalho.php";
     //TODO: var urlCadastra = "/php/cliente/cadastra-trabalho.php";
     
     
-    var getDisponiveis = function(filtro) {
-        return $http.post(urlDisponiveis, {filtro: filtro}).then(
+    var getAbertos = function(filtro) {
+        return $http.post(urAbertos, {filtro: filtro}).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -15,8 +15,8 @@ app.factory('TrabalhoService', function($http) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
             });
     }
-    var getAndamento = function(filtro) {
-        return $http.post(urlAndamento, {filtro: filtro}).then(
+    var getAssinados = function(filtro) {
+        return $http.post(urlAssinados, {filtro: filtro}).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -24,17 +24,8 @@ app.factory('TrabalhoService', function($http) {
                 return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
             });
     }
-    var getConcluido = function(filtro) {
-        return $http.post(urlConcluido, {filtro: filtro}).then(
-            function sucesso(respostaServidor) {
-                return respostaServidor.data;
-            },
-            function erro(respostaServidor) {
-                return {resultado : false, mensagem: "Erro ao se comunicar com a servidor"};
-            });
-    }
-    var altera = function(modificacoes) {
-        return $http.post(urlAltera, modificacoes).then(
+    var getConcluidos = function(filtro) {
+        return $http.post(urlConcluidos, {filtro: filtro}).then(
             function sucesso(respostaServidor) {
                 return respostaServidor.data;
             },
@@ -43,10 +34,20 @@ app.factory('TrabalhoService', function($http) {
             });
     }
     
+    var cadastrarTrabalho = function(trabalho) {
+        return $http.post(urlCadastraTrabalho, trabalho).then(
+            function sucesso(respostaServidor) {
+                return respostaServidor.data;
+            },
+            function erro(respostaServidor) {
+                return {resultado : false, mensagem: "Erro ao se comunicar com o servidor"};
+            });
+    };
+    
     return {
-        getDisponiveis: getDisponiveis,
-        getAndamento: getAndamento,
-        getConcluido: getConcluido,
-        altera: altera
+        getAbertos: getAbertos,
+        getAssinados: getAssinados,
+        getConcluidos: getConcluidos,
+        cadastrarTrabalho: cadastrarTrabalho
     };
 });

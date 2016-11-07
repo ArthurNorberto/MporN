@@ -1,11 +1,11 @@
-app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, store, jwtHelper, TrabalhoService) {
+app.controller("FreelancerTrabalhoAndamentoController", function($scope, $location, store, jwtHelper, TrabalhoFreelancerService) {
     $scope.dataFreelancerTrabalhoAndamento = {
         loading: 0,
         dados: []
     };
 
     $scope.dataFreelancerTrabalhoAndamento.loading += 1;
-    TrabalhoService.getAndamento().then(function(data) {
+    TrabalhoFreelancerService.getAndamento().then(function(data) {
         if (data.trabalhos) {
             $scope.dataFreelancerTrabalhoAndamento.dados = data.trabalhos
             $scope.dataFreelancerTrabalhoAndamento.loading -= 1;

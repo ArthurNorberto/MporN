@@ -12,6 +12,16 @@
         <li ng-class="{'active' : isTelaAtiva('/freelancer/concluido')}"><a ng-href="#/freelancer/concluido">Trabalhos Concluídos</a></li>
         <li ng-class="{'active' : isTelaAtiva('/freelancer/dados')}"><a ng-href="#/freelancer/dados">Alterar Info</a></li>
       </ul>
+      
+      <ul class="nav navbar-nav" ng-show="getTelaAtiva().startsWith('/cliente/')">
+        <li ng-class="{'active' : isTelaAtiva('/cliente/dados')}"><a ng-href="#/cliente/dados">Alterar Info</a></li>
+        <li ng-class="{'active' : isTelaAtiva('/cliente/criar-trabalho')}"><a ng-href="#/cliente/criar-trabalho">Criar Trabalhos</a></li>
+        <li ng-class="{'active' : isTelaAtiva('/cliente/trabalho-aberto')}"><a ng-href="#/cliente/trabalho-aberto">Trabalho Aberto</a></li>
+        <li ng-class="{'active' : isTelaAtiva('/cliente/trabalho-assinado')}"><a ng-href="#/cliente/trabalho-assinado">Trabalho Assinado</a></li>
+        <li ng-class="{'active' : isTelaAtiva('/cliente/trabalho-concluido')}"><a ng-href="#/cliente/trabalho-concluido">Trabalho Concluido</a></li>
+        
+      </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <!-- TODO: colocar em class "active" quando estiver em sua pagina -->
         <li class="dropdown" ng-class="{open: dataBarraSuperior.dropDownLogin}"
